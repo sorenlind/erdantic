@@ -1,13 +1,15 @@
-from abc import ABC, abstractmethod
 import inspect
-from typing import Any, Callable, Dict, Generic, List, Optional, Type, TypeVar, Union
+from abc import ABC, abstractmethod
+from typing import (Any, Callable, Dict, Generic, List, Optional, Type,
+                    TypeVar, Union)
 
-from erdantic.exceptions import InvalidModelAdapterError, ModelAdapterNotFoundError
+from erdantic.exceptions import (InvalidModelAdapterError,
+                                 ModelAdapterNotFoundError)
 from erdantic.typing import Final, GenericAlias, repr_type
 
+#_row_template = """<tr><td>{name}</td><td port="{name}">{type_name}</td></tr>"""
 
-_row_template = """<tr><td>{name}</td><td port="{name}">{type_name}</td></tr>"""
-
+_row_template = """<tr><td port="{name}">{name}</td></tr>"""
 
 FT = TypeVar("FT", bound=Any, covariant=True)
 """Type variable for a field object adapted by adapter class
@@ -73,7 +75,8 @@ class Field(ABC, Generic[FT]):
         Returns:
             str: DOT language for table row
         """
-        return _row_template.format(name=self.name, type_name=self.type_name)
+        #return _row_template.format(name=self.name, type_name=self.type_name)
+        return _row_template.format(name=self.name)
 
     def __eq__(self, other: Any) -> bool:
         return isinstance(other, type(self)) and hash(self) == hash(other)
@@ -87,7 +90,7 @@ class Field(ABC, Generic[FT]):
 
 _table_template = """
 <<table border="0" cellborder="1" cellspacing="0">
-<tr><td port="_root" colspan="2"><b>{name}</b></td></tr>
+<tr><td port="_root" colspan="1"><b>{name}</b></td></tr>
 {rows}
 </table>>
 """

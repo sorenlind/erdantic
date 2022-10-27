@@ -1,20 +1,17 @@
 import inspect
 import os
 from types import ModuleType
-from typing import Any, Iterable, Iterator, List, Optional, Sequence, Set, Type, Union
+from typing import (Any, Iterable, Iterator, List, Optional, Sequence, Set,
+                    Type, Union)
 
 import pygraphviz as pgv
 
-from erdantic.base import Field, get_model_adapter, Model, model_adapter_registry
-from erdantic.exceptions import (
-    NotATypeError,
-    _StringForwardRefError,
-    StringForwardRefError,
-    _UnevaluatedForwardRefError,
-    UnevaluatedForwardRefError,
-    UnknownFieldError,
-    UnknownModelTypeError,
-)
+from erdantic.base import (Field, Model, get_model_adapter,
+                           model_adapter_registry)
+from erdantic.exceptions import (NotATypeError, StringForwardRefError,
+                                 UnevaluatedForwardRefError, UnknownFieldError,
+                                 UnknownModelTypeError, _StringForwardRefError,
+                                 _UnevaluatedForwardRefError)
 from erdantic.typing import get_recursive_args
 from erdantic.version import __version__
 
@@ -117,7 +114,9 @@ class EntityRelationshipDiagram:
             ranksep=1.5,
             rankdir="LR",
             name="Entity Relationship Diagram",
-            label=f"Created by erdantic v{__version__} <https://github.com/drivendataorg/erdantic>",
+            #label=f"Created by erdantic v{__version__}
+            #<https://github.com/drivendataorg/erdantic>",
+            label="",
             fontsize=9,
             fontcolor="gray66",
         )
